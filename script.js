@@ -76,8 +76,8 @@ window.addEventListener('resize', resizeCanvas);
 
 const PARTICLE_COLORS = [
   'rgba(104, 195, 67,',
-  'rgba(38, 150, 147,',
-  'rgba(240, 183, 56,'
+  'rgba(53, 136, 90,',
+  'rgba(148, 189, 102,'
 ];
 
 function initParticles() {

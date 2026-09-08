@@ -7,49 +7,33 @@
   --bg-deep: #0b1d14;
   --bg-dark: #10281d;
   --bg-surface: #153728;
-  --bg-surface-elevated: #1a4432;
-  --bg-light-panel: #f3f8f5;
-  --bg-light-card: #ffffff;
-  
-  --primary-green: #2e7d4d;
-  --primary-green-hover: #38955d;
-  --green-bright: #68c343;
-  --green-neon: #5fa64a;
-  --green-soft: #e3f4e8;
 
-  --teal-iot: #35885a;
+  --primary-green: #2e7d4d;
+  --green-bright: #68c343;
+
   --teal-cyan: #5aa86a;
-  --teal-glow: rgba(90, 168, 106, 0.35);
 
   --cacao-gold: #94bd66;
-  --cacao-gold-dark: #6fa04a;
   --cacao-amber: #8aab5e;
-  --cacao-brown: #244c35;
 
-  --red-alert: #e05b4f;
-  --red-soft: #ffebee;
-  
   --text-main: #f0f7f3;
   --text-muted: #9dc2ab;
   --text-dark: #122b1e;
   --text-dark-muted: #4e6b5a;
-  
+
   --border-line: rgba(202, 234, 224, 0.15);
-  --border-line-light: rgba(46, 125, 77, 0.18);
-  
+
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
-  
+
   --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.18);
   --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.28);
   --shadow-lg: 0 24px 60px -15px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 35px rgba(104, 195, 67, 0.3);
-  
+
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-heading: 'Space Grotesk', var(--font-sans);
-  --font-mono: 'Fira Code', monospace;
 }
 
 *, *::before, *::after {
@@ -60,7 +44,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -176,20 +160,37 @@ canvas#particles {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
+  padding: 18px 24px;
   position: relative;
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 4px 0;
   transition: opacity 0.2s ease;
 }
 
-.nav-brand:hover {
+.nav-brand-text-link {
+  display: flex;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.nav-brand-text-link:hover {
   opacity: 0.85;
+}
+
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: opacity 0.2s ease;
+}
+
+.nav-logo-link:hover {
+  opacity: 0.8;
 }
 
 .nav-brand-logos {
@@ -199,9 +200,20 @@ canvas#particles {
 }
 
 .nav-brand-logos img {
-  height: 30px;
+  height: 40px;
   width: auto;
   object-fit: contain;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-fiis-logo {
+  display: flex;
+  align-items: center;
 }
 
 .nav-brand-text {
@@ -211,8 +223,8 @@ canvas#particles {
 
 .nav-brand-title {
   font-family: var(--font-heading);
-  font-size: 1.02rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: #122b1e;
   display: flex;
   align-items: center;
@@ -220,17 +232,17 @@ canvas#particles {
 }
 
 .nav-brand-title .badge-iot {
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   background: var(--primary-green);
   color: #ffffff;
   font-weight: 600;
-  padding: 2px 7px;
+  padding: 3px 9px;
   border-radius: 4px;
   letter-spacing: 0.06em;
 }
 
 .nav-brand-subtitle {
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   color: var(--text-dark-muted);
   letter-spacing: 0.03em;
 }
@@ -242,10 +254,10 @@ canvas#particles {
 }
 
 .nav-link {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-dark);
-  padding: 6px 0;
+  padding: 8px 0;
   border-bottom: 2px solid transparent;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
@@ -257,10 +269,10 @@ canvas#particles {
 
 .nav-mobile-toggle {
   display: none;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--text-dark);
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   border-radius: 6px;
   background: transparent;
   border: 1px solid #cfd9d4;
@@ -343,12 +355,25 @@ canvas#particles {
   backdrop-filter: blur(10px);
 }
 
-.hero-institucion-text {
+.hero-institucion > span:first-child {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-main);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.hero-institucion > span:last-child {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero-institucion-sep {
+  font-size: 0.75rem;
+  color: var(--text-muted);
 }
 
 .hero-tag {
@@ -647,15 +672,6 @@ section {
   margin-right: auto;
 }
 
-/* Botanical Background Sketch Accents */
-.botanical-bg-accent {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.12;
-  filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
-  z-index: 0;
-}
-
 /* ==========================================================================
    SECTION 1: ¿PARA QUÉ SIRVE ESTE SISTEMA? (Tríptico Panel Central)
    ========================================================================== */
@@ -730,425 +746,14 @@ section {
   margin-top: auto;
 }
 
-/* Card "POR QUÉ IMPORTA" del Tríptico */
-.why-it-matters-banner {
-  margin-top: 40px;
-  background: linear-gradient(135deg, rgba(21, 55, 40, 0.9), rgba(16, 40, 29, 0.95));
-  border: 1px solid rgba(148, 189, 102, 0.35);
-  border-radius: var(--radius-xl);
-  padding: 36px 40px;
-  display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
-  gap: 36px;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  text-align: center;
-}
-
-.why-it-matters-banner::after {
-  content: "";
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(148, 189, 102, 0.18) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.why-tag {
-  display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  color: var(--cacao-gold);
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
-
-.why-text {
-  font-size: 1.15rem;
-  color: var(--text-main);
-  line-height: 1.65;
-  font-weight: 400;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.why-text strong {
-  color: var(--cacao-gold);
-}
-
-.why-visual {
-  text-align: center;
-}
-
-.why-visual img {
-  max-height: 140px;
-  margin: 0 auto;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
-}
-
 /* ==========================================================================
-   SECTION 2: EL DESAFÍO (Tríptico Interior Panel Izquierdo)
-   ========================================================================== */
-.challenge-section {
-  background: #f4f8f5;
-  color: var(--text-dark);
-  position: relative;
-}
-
-.challenge-section h2, 
-.challenge-section h3, 
-.challenge-section h4 {
-  color: var(--text-dark);
-}
-
-.challenge-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-  margin-top: 40px;
-}
-
-.challenge-photos-card {
-  position: relative;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  background: #ffffff;
-  padding: 16px;
-  border: 1px solid var(--border-line-light);
-}
-
-.challenge-photos-card img {
-  border-radius: var(--radius-lg);
-  width: 100%;
-}
-
-.challenge-text-block {
-  text-align: center;
-}
-
-.challenge-text-block p {
-  font-size: 1.08rem;
-  color: var(--text-dark-muted);
-  line-height: 1.7;
-  margin-bottom: 24px;
-}
-
-.challenge-problems-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.challenge-problem-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 14px 18px;
-  background: #ffffff;
-  border: 1px solid rgba(229, 57, 53, 0.2);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  text-align: left;
-}
-
-.challenge-problem-item .p-icon {
-  color: var(--red-alert);
-  font-size: 1.1rem;
-  font-weight: 800;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.challenge-problem-item p {
-  font-size: 0.92rem;
-  color: var(--text-dark-muted);
-  margin: 0;
-}
-
-.challenge-problem-item strong {
-  color: var(--text-dark);
-}
-
-/* Scientific Metrics Grid (Por qué importa: La ciencia respalda el control) */
-.science-metrics-wrap {
-  margin-top: 60px;
-  padding-top: 50px;
-  border-top: 1px solid var(--border-line-light);
-}
-
-.science-heading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
-  font-size: 1.3rem;
-  color: var(--primary-green);
-  text-align: center;
-}
-
-.science-heading-square {
-  width: 14px;
-  height: 14px;
-  background: var(--cacao-gold);
-  border-radius: 3px;
-}
-
-.science-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.science-card {
-  background: #ffffff;
-  border: 1px solid var(--border-line-light);
-  border-radius: var(--radius-lg);
-  padding: 24px 18px;
-  text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.science-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--primary-green);
-}
-
-.science-value {
-  font-family: var(--font-heading);
-  font-size: 2.1rem;
-  font-weight: 800;
-  color: var(--primary-green);
-  line-height: 1.1;
-  margin-bottom: 8px;
-}
-
-.science-desc {
-  font-size: 0.85rem;
-  color: var(--text-dark-muted);
-  line-height: 1.4;
-  margin-bottom: 14px;
-}
-
-.science-visual-thumb {
-  margin-top: auto;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.science-visual-thumb img {
-  max-height: 55px;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-/* Banner Agricultura 4.0 */
-.agri-4-banner {
-  margin-top: 40px;
-  background: var(--bg-dark);
-  color: var(--text-main);
-  border-radius: var(--radius-xl);
-  padding: 30px 36px;
-  display: grid;
-  grid-template-columns: 1.4fr 0.6fr;
-  gap: 30px;
-  align-items: center;
-  box-shadow: var(--shadow-lg);
-  text-align: center;
-}
-
-.agri-4-banner h3 {
-  font-size: 1.4rem;
-  color: var(--cacao-gold);
-  margin-bottom: 8px;
-}
-
-.agri-4-banner p {
-  font-size: 1.05rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.agri-4-banner img {
-  max-height: 110px;
-  margin: 0 auto;
-  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.3));
-}
-
-/* ==========================================================================
-   SECTION 3: IMPACTO DEL PROYECTO (Tríptico Panel Izquierdo Exterior)
+   SECTION 3: ARQUITECTURA (Fondo oscuro)
    ========================================================================== */
 .impact-section {
   background: var(--bg-deep);
 }
 
-.impact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  margin-top: 50px;
-}
-
-.impact-card {
-  background: rgba(21, 55, 40, 0.55);
-  border: 1px solid var(--border-line);
-  border-radius: var(--radius-lg);
-  padding: 30px 24px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.impact-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(104, 195, 67, 0.4);
-  box-shadow: var(--shadow-md), 0 0 30px rgba(104, 195, 67, 0.1);
-}
-
-.impact-icon-circle {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(104, 195, 67, 0.15), rgba(53, 136, 90, 0.15));
-  border: 1px solid rgba(104, 195, 67, 0.3);
-  display: grid;
-  place-items: center;
-  font-size: 1.4rem;
-  margin-bottom: 18px;
-  color: var(--green-bright);
-}
-
-.impact-card h3 {
-  font-size: 1.15rem;
-  margin-bottom: 8px;
-  color: #ffffff;
-}
-
-.impact-card p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.55;
-}
-
-/* 7th item full width feature */
-.impact-card.featured-7th {
-  grid-column: span 3;
-  background: linear-gradient(135deg, rgba(21, 55, 40, 0.8), rgba(16, 40, 29, 0.9));
-  border-color: rgba(53, 136, 90, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 16px;
-  padding: 24px 32px;
-  text-align: center;
-}
-
-.impact-card.featured-7th .impact-icon-circle {
-  margin-bottom: 0;
-  flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  font-size: 1.6rem;
-}
-
-/* ==========================================================================
-   SECTION 4: NUESTRO ENFOQUE (Design Thinking + 3 Capas)
-   ========================================================================== */
-.enfoque-section {
-  background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(21, 55, 40, 0.45) 50%, var(--bg-deep) 100%);
-  position: relative;
-}
-
-/* Design Thinking 5 Steps */
-.dt-steps-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
-  margin-top: 48px;
-}
-
-.dt-step-card {
-  background: rgba(21, 55, 40, 0.6);
-  border: 1px solid var(--border-line);
-  border-radius: var(--radius-lg);
-  padding: 24px 18px;
-  transition: all 0.3s ease;
-  position: relative;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.dt-step-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(104, 195, 67, 0.45);
-  box-shadow: var(--shadow-sm);
-}
-
-.dt-step-number {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: var(--primary-green);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.1rem;
-  display: grid;
-  place-items: center;
-  margin-bottom: 14px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-}
-
-.dt-step-card h4 {
-  font-size: 1.05rem;
-  margin-bottom: 8px;
-  color: #ffffff;
-}
-
-.dt-step-card p {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
 /* Arquitectura en 3 Capas */
-.arch-container {
-  margin-top: 70px;
-  background: rgba(16, 40, 29, 0.7);
-  border: 1px solid var(--border-line);
-  border-radius: var(--radius-xl);
-  padding: 40px;
-  box-shadow: var(--shadow-lg);
-}
-
 .arch-layers-list {
   display: flex;
   flex-direction: column;
@@ -1187,12 +792,6 @@ section {
   font-weight: 800;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
-}
-
-.arch-badge-pill.edge {
-  background: rgba(53, 136, 90, 0.2);
-  color: var(--teal-cyan);
-  border: 1px solid rgba(53, 136, 90, 0.4);
 }
 
 .arch-badge-pill.server {
@@ -1246,149 +845,6 @@ section {
   flex-shrink: 0;
 }
 
-/* ==========================================================================
-   SECTION 5: RESULTADOS Y VALIDACIÓN (Tríptico Interior Panel Derecho)
-   ========================================================================== */
-.results-section {
-  background: #f4f8f5;
-  color: var(--text-dark);
-}
-
-.results-section h2,
-.results-section h3,
-.results-section h4 {
-  color: var(--text-dark);
-}
-
-.results-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-/* Checklist of 6 Tests */
-.tests-checklist-card {
-  background: #ffffff;
-  border: 1px solid var(--border-line-light);
-  border-radius: var(--radius-xl);
-  padding: 36px 30px;
-  box-shadow: var(--shadow-sm);
-  text-align: center;
-}
-
-.checklist-title-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.checklist-title-wrap h3 {
-  font-size: 1.35rem;
-  font-weight: 700;
-}
-
-.tests-checklist-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.test-check-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 12px 16px;
-  background: #f9fbf9;
-  border: 1px solid var(--border-line-light);
-  border-radius: var(--radius-md);
-  transition: all 0.25s ease;
-  text-align: left;
-  max-width: 440px;
-  margin: 0 auto;
-}
-
-.test-check-item:hover {
-  background: #ffffff;
-  border-color: var(--primary-green);
-  box-shadow: var(--shadow-sm);
-}
-
-.test-check-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(46, 125, 77, 0.12);
-  color: var(--primary-green);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 0.95rem;
-  flex-shrink: 0;
-}
-
-.test-check-item p {
-  font-size: 0.92rem;
-  color: var(--text-dark);
-  margin: 0;
-}
-
-/* Prototipo Físico Details & 100% Banner */
-.prototype-info-card {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.prototype-box {
-  background: #ffffff;
-  border: 1px solid var(--border-line-light);
-  border-radius: var(--radius-xl);
-  padding: 30px;
-  box-shadow: var(--shadow-sm);
-  text-align: center;
-}
-
-.proto-title-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 14px;
-}
-
-.proto-title-wrap h3 {
-  font-size: 1.25rem;
-}
-
-.prototype-box p {
-  font-size: 0.95rem;
-  color: var(--text-dark-muted);
-  line-height: 1.65;
-  margin-bottom: 16px;
-}
-
-.proto-steps-pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-}
-
-.proto-pill {
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 6px 12px;
-  background: var(--bg-light-panel);
-  border: 1px solid var(--border-line-light);
-  border-radius: 100px;
-  color: var(--primary-green);
-}
-
 /* 100% Validation Banner */
 .validation-100-banner {
   background: var(--bg-dark);
@@ -1433,16 +889,16 @@ section {
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 48px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 44px;
 }
 
 .team-card {
   background: rgba(21, 55, 40, 0.55);
   border: 1px solid var(--border-line);
   border-radius: var(--radius-lg);
-  padding: 26px 20px;
+  padding: 18px 16px;
   text-align: center;
   transition: all 0.3s ease;
   position: relative;
@@ -1455,22 +911,22 @@ section {
 }
 
 .team-avatar {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  margin: 0 auto 14px;
+  margin: 0 auto 10px;
   background: linear-gradient(135deg, rgba(104, 195, 67, 0.25), rgba(53, 136, 90, 0.2));
   border: 2px solid rgba(104, 195, 67, 0.4);
   display: grid;
   place-items: center;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.05rem;
   color: var(--green-bright);
 }
 
 .team-card h4 {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   margin-bottom: 4px;
   color: #ffffff;
 }
@@ -1560,6 +1016,17 @@ footer {
   max-width: 360px;
 }
 
+.footer-brand .nav-brand-logos a {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  transition: opacity 0.2s ease;
+}
+
+.footer-brand .nav-brand-logos a:hover {
+  opacity: 0.8;
+}
+
 .footer-col h4 {
   font-size: 0.95rem;
   color: #ffffff;
@@ -1601,34 +1068,19 @@ footer {
    RESPONSIVE QUERIES
    ========================================================================== */
 @media (max-width: 1100px) {
-  .dt-steps-grid { grid-template-columns: repeat(3, 1fr); }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 1024px) {
   .hero-grid { grid-template-columns: 1fr; gap: 44px; }
-  .hero { min-height: auto; padding: 120px 0 70px; }
+  .hero { min-height: auto; padding: 140px 0 70px; }
   .purpose-grid { grid-template-columns: repeat(2, 1fr); }
-  .science-grid { grid-template-columns: repeat(2, 1fr); }
-  .impact-grid { grid-template-columns: repeat(2, 1fr); }
-  .impact-card.featured-7th { grid-column: span 2; }
-  .results-grid { grid-template-columns: 1fr; }
-  .why-it-matters-banner, .agri-4-banner { grid-template-columns: 1fr; text-align: center; }
-  .why-it-matters-banner .why-visual { margin-top: 10px; }
-  .arch-container { padding: 30px; }
   .docente-course-card { justify-content: center; text-align: center; }
   .docente-info { flex-direction: column; text-align: center; }
-}
 
-@media (max-width: 900px) {
-  .hero-stats-strip { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .service-tag-row { justify-content: center; }
-}
-
-@media (max-width: 768px) {
   .nav-menu {
     position: fixed;
-    top: 55px;
+    top: 77px;
     left: 0;
     right: 0;
     background: #ffffff;
@@ -1638,7 +1090,7 @@ footer {
     padding: 12px 20px;
     display: none;
     gap: 0;
-    max-height: calc(100vh - 55px);
+    max-height: calc(100vh - 77px);
     overflow-y: auto;
   }
   .nav-menu.open { display: flex; animation: fadeInDown 0.25s ease; }
@@ -1660,19 +1112,21 @@ footer {
     background: rgba(46, 125, 77, 0.05);
     border-bottom-color: var(--primary-green);
   }
+}
 
+@media (max-width: 900px) {
+  .hero-stats-strip { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+@media (max-width: 768px) {
   section { padding: 80px 0; }
   .container { padding: 0 20px; }
 
-  .challenge-grid { grid-template-columns: 1fr; gap: 34px; }
-  .dt-steps-grid { grid-template-columns: 1fr 1fr; }
   .arch-layer-item { grid-template-columns: 1fr; gap: 12px; }
   .team-grid { grid-template-columns: 1fr 1fr; }
   .footer-top-grid { grid-template-columns: 1fr; gap: 30px; }
   .arch-layers-list { gap: 12px; }
   .arch-layer-item { padding: 18px; }
-  .why-it-matters-banner { padding: 28px 22px; }
-  .tests-checklist-card, .prototype-box { padding: 24px 18px; }
 }
 
 @keyframes fadeInDown {
@@ -1681,15 +1135,13 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .dt-steps-grid { grid-template-columns: 1fr 1fr; }
   .hero-stats-strip { grid-template-columns: 1fr 1fr; }
-  .science-heading { font-size: 1.1rem; flex-wrap: wrap; }
 }
 
 @media (max-width: 480px) {
   section { padding: 64px 0; }
   .container { padding: 0 16px; }
-  .hero { padding: 110px 0 60px; }
+  .hero { padding: 130px 0 60px; }
   .hero-title { font-size: 2rem; }
   .hero-description { font-size: 1rem; }
   .hero-stats-strip { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -1700,20 +1152,10 @@ footer {
   .sensor-pin { font-size: 0.6rem; padding: 3px 7px; }
 
   .purpose-grid { grid-template-columns: 1fr; }
-  .science-grid { grid-template-columns: 1fr; }
-  .impact-grid { grid-template-columns: 1fr; }
-  .impact-card.featured-7th { grid-column: span 1; flex-direction: column; text-align: center; gap: 10px; }
-  .dt-steps-grid { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: 1fr; }
   .validation-100-banner { grid-template-columns: 1fr; text-align: center; }
-  .arch-container { padding: 20px 16px; }
   .section-title { font-size: 1.7rem; }
-  .why-it-matters-banner, .agri-4-banner { padding: 24px 16px; }
-  .agri-4-banner { grid-template-columns: 1fr; text-align: center; }
-  .agri-4-banner img { margin: 0 auto; }
   .validation-100-banner { gap: 12px; }
-  .science-card { padding: 20px 12px; }
-  .science-value { font-size: 1.7rem; }
   .docente-course-card { padding: 20px; }
   .footer-bottom { flex-direction: column; text-align: center; gap: 6px; }
 }
