@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invernadero Inteligente IoT | UNAS - Germinación de Plantas</title>
+<meta name="description" content="Monitoreo y control automatizado de la germinación de semillas mediante tecnología IoT, adaptable a cualquier especie. Proyecto de la Universidad Nacional Agraria de la Selva (UNAS - FIIS), Tingo María, Perú.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="ambient-bg"></div>
+<canvas id="particles"></canvas>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#inicio" class="nav-brand">
+      <div class="nav-brand-logos">
+        <img src="assets/logo_unas.png" alt="UNAS" title="Universidad Nacional Agraria de la Selva">
+        <img src="assets/logo_fiis.png" alt="FIIS" title="Facultad de Ingeniería en Informática y Sistemas">
+      </div>
+      <div class="nav-brand-text">
+        <span class="nav-brand-title">Invernadero <span class="badge-iot">IoT</span></span>
+        <span class="nav-brand-subtitle">UNAS · FIIS · Tingo María</span>
+      </div>
+    </a>
+
+    <div class="nav-menu" id="navMenu">
+      <a href="#proposito" class="nav-link">Propósito</a>
+      <a href="#desafio" class="nav-link">El Desafío</a>
+      <a href="#impacto" class="nav-link">Impacto</a>
+      <a href="#enfoque" class="nav-link">Metodología</a>
+      <a href="#arquitectura" class="nav-link">Arquitectura</a>
+      <a href="#resultados" class="nav-link">Resultados</a>
+      <a href="#equipo" class="nav-link">Equipo</a>
+    </div>
+
+    <button class="nav-mobile-toggle" id="navToggle" aria-label="Abrir Menú">☰</button>
+  </div>
+</nav>
+
+<!-- ================= HERO SECTION ================= -->
+<header class="hero" id="inicio">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Left Content Column -->
+      <div class="hero-content-col">
+        <div class="hero-institucion">
+          <span class="hero-institucion-text">UNAS · Facultad de Ingeniería en Informática y Sistemas</span>
+        </div>
+
+        <span class="hero-tag">PROYECTO IOT · TINGO MARÍA 2026</span>
+        <h1 class="hero-title">
+          Invernadero <span class="highlight-green">Inteligente IoT</span>
+        </h1>
+        <p class="hero-description">
+          Monitoreo y control automatizado de la germinación de semillas mediante tecnología IoT. Del control manual a la agricultura inteligente.
+        </p>
+
+        <!-- Metric badges from triptych -->
+        <div class="hero-stats-strip">
+          <div class="hero-stat-item">
+            <span class="hero-stat-value green">98.3%</span>
+            <span class="hero-stat-label">Germinación óptima</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-value green">&gt;80%</span>
+            <span class="hero-stat-label">Humedad relativa</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-value green">25–30°C</span>
+            <span class="hero-stat-label">Rango térmico</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-value green">100%</span>
+            <span class="hero-stat-label">Pruebas validadas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Greenhouse Showcase -->
+      <div class="hero-greenhouse-card">
+        <div class="greenhouse-card-header">
+          <span style="font-size:0.85rem; font-weight:700; color:#fff;">🌱 Prototipo Invernadero IoT</span>
+          <span class="greenhouse-live-badge"><span class="pulse-dot"></span> EN VIVO</span>
+        </div>
+
+        <div class="greenhouse-visual-wrapper">
+          <img src="assets/greenhouse_transparent.png" alt="Invernadero Inteligente IoT" class="greenhouse-img">
+          
+          <!-- Interactive Sensor Pins -->
+          <div class="sensor-pin temp">🌡️ DHT22: <span id="heroTempPin">28.2°C</span></div>
+          <div class="sensor-pin soil">💧 Suelo: <span id="heroSoilPin">78%</span></div>
+          <div class="sensor-pin wifi">📡 WiFi MQTT</div>
+          <div class="sensor-pin fan">🌀 Fan: Auto</div>
+        </div>
+
+        <!-- Telemetry Sensors -->
+        <div class="hero-sensors-grid">
+          <div class="hero-sensor-box">
+            <div class="s-icon">🌡️</div>
+            <div class="s-val"><span id="dashTemp">28.2</span><small style="font-size:0.65em;color:var(--text-muted)">°C</small></div>
+            <div class="s-lbl">Temp. Aire</div>
+          </div>
+          <div class="hero-sensor-box">
+            <div class="s-icon">💧</div>
+            <div class="s-val"><span id="dashHum">84</span><small style="font-size:0.65em;color:var(--text-muted)">%</small></div>
+            <div class="s-lbl">Hum. Relativa</div>
+          </div>
+          <div class="hero-sensor-box">
+            <div class="s-icon">🌱</div>
+            <div class="s-val"><span id="dashSoil">78</span><small style="font-size:0.65em;color:var(--text-muted)">%</small></div>
+            <div class="s-lbl">Hum. Suelo</div>
+          </div>
+        </div>
+
+        <!-- Actuators strip -->
+        <div class="hero-actuators-strip">
+          <div class="actuator-pill active" id="heroPumpPill">
+            <span>💦 Riego Automático</span>
+            <span class="status-dot"></span>
+          </div>
+          <div class="actuator-pill" id="heroFanPill">
+            <span>🌀 Ventilación 12V</span>
+            <span class="status-dot"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= SECTION 1: ¿PARA QUÉ SIRVE ESTE SISTEMA? ================= -->
+<section class="purpose-section" id="proposito">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-badge-wrap">
+        <span class="section-tag green">Propósito del Sistema</span>
+      </div>
+      <h2 class="section-title">¿Para qué sirve este sistema?</h2>
+      <p class="section-subtitle">
+        Automatiza el monitoreo y control ambiental del invernadero, para que la germinación de las plantas ya no dependa de que alguien esté mirando a cada hora.
+      </p>
+    </div>
+
+    <!-- 4 Feature Cards from Middle Column of Triptych -->
+    <div class="purpose-grid">
+      <div class="purpose-card">
+        <div class="purpose-icon-box">🌡️</div>
+        <h3>Mide temperatura, humedad y luz en tiempo real</h3>
+        <p>Sensores DHT22 y LDR calibrados para registrar continuamente las variables microclimáticas vitales para el desarrollo de la planta.</p>
+      </div>
+
+      <div class="purpose-card">
+        <div class="purpose-icon-box">💧</div>
+        <h3>Riega automáticamente cuando el suelo lo necesita</h3>
+        <p>Sensor de humedad de suelo capacitivo que activa la electrobomba de riego solo cuando el sustrato desciende del umbral óptimo.</p>
+      </div>
+
+      <div class="purpose-card">
+        <div class="purpose-icon-box">💨</div>
+        <h3>Ventila cuando la temperatura sube demasiado</h3>
+        <p>Extractor dinámico de calor que se acciona automáticamente al superar los 30°C para disipar el estrés térmico en el germinador.</p>
+      </div>
+
+      <div class="purpose-card">
+        <div class="purpose-icon-box">⚠️</div>
+        <h3>Envía alertas si algo sale de rango</h3>
+        <p>Transmisión de telemetría por MQTT con avisos preventivos inmediatos si las condiciones se desvían de los rangos biológicos recomendados.</p>
+      </div>
+    </div>
+
+    <!-- Banner "POR QUÉ IMPORTA" del Tríptico -->
+    <div class="why-it-matters-banner">
+      <div>
+        <span class="why-tag">Por qué importa</span>
+        <p class="why-text">
+          Cada punto de germinación ganado es <strong>más plántulas listas para el trasplante</strong>. Automatizar el control ambiental reduce pérdidas evitables y convierte el cuidado del cultivo en una <strong>decisión basada en datos, no en suposiciones</strong>.
+        </p>
+      </div>
+      <div class="why-visual">
+        <img src="assets/cacao_illustration.png" alt="Plántulas en crecimiento">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 2: EL DESAFÍO (Interior Panel Izquierdo) ================= -->
+<section class="challenge-section" id="desafio">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-badge-wrap">
+        <span class="section-tag green">El Desafío</span>
+      </div>
+      <h2 class="section-title">El control manual pone en riesgo la germinación de las plantas</h2>
+    </div>
+
+    <div class="challenge-grid">
+      <!-- Photos Card from Triptych -->
+      <div class="challenge-photos-card">
+        <img src="assets/desafio_photos.png" alt="Invernadero tradicional y brotes de plántulas en Tingo María">
+      </div>
+
+      <!-- Description & Problem List -->
+      <div class="challenge-text-block">
+        <p>
+          Los agricultores de Tingo María controlan la temperatura y la humedad de forma manual y empírica, revisando el invernadero varias veces al día. De noche o en días de lluvia, las condiciones cambian sin que nadie se dé cuenta a tiempo y eso se traduce en menos plántulas listas para el trasplante.
+        </p>
+
+        <ul class="challenge-problems-list">
+          <li class="challenge-problem-item">
+            <span class="p-icon">✕</span>
+            <p><strong>Falta de supervisión nocturna:</strong> Las heladas, golpes de calor o lluvias repentinas ocurren sin monitoreo.</p>
+          </li>
+          <li class="challenge-problem-item">
+            <span class="p-icon">✕</span>
+            <p><strong>Riego desequilibrado:</strong> El exceso pudre la semilla y la escasez detiene el desarrollo radicular.</p>
+          </li>
+          <li class="challenge-problem-item">
+            <span class="p-icon">✕</span>
+            <p><strong>Pérdida económica:</strong> Menor tasa de germinación significa mayor costo por plántula producida.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Science Supported Metrics Grid -->
+    <div class="science-metrics-wrap">
+      <div class="science-heading">
+        <div class="science-heading-square"></div>
+        <strong>Por qué importa: la ciencia respalda el control ambiental</strong>
+      </div>
+
+      <div class="science-grid">
+        <div class="science-card">
+          <span class="science-value">98.3%</span>
+          <p class="science-desc">germinación con semilla fresca y manejo adecuado</p>
+          <div class="science-visual-thumb">
+            <img src="assets/cacao_seed.jpg" alt="Semilla para germinación">
+          </div>
+        </div>
+
+        <div class="science-card">
+          <span class="science-value">25–30°C</span>
+          <p class="science-desc">rango óptimo de temperatura durante la germinación</p>
+          <div class="science-visual-thumb">
+            <span style="font-size:2.2rem">🌡️</span>
+          </div>
+        </div>
+
+        <div class="science-card">
+          <span class="science-value">&gt;80%</span>
+          <p class="science-desc">humedad relativa requerida en el germinador</p>
+          <div class="science-visual-thumb">
+            <img src="assets/sensor_probe.png" alt="Sonda de humedad">
+          </div>
+        </div>
+
+        <div class="science-card">
+          <span class="science-value">5–10 días</span>
+          <p class="science-desc">para la emergencia de brotes en condiciones óptimas</p>
+          <div class="science-visual-thumb">
+            <img src="assets/seedling_sprout.png" alt="Brote de plántula">
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner Agricultura 4.0 -->
+      <div class="agri-4-banner">
+        <div>
+          <h3>Agricultura 4.0</h3>
+          <p>Un ejemplo concreto de tecnología aplicada a la realidad agrícola de Tingo María, reduciendo la brecha entre la investigación universitaria y el campo.</p>
+        </div>
+        <div>
+          <img src="assets/smart_agriculture.png" alt="Agricultura Inteligente">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 3: IMPACTO DEL PROYECTO (Panel Izquierdo Exterior) ================= -->
+<section class="impact-section" id="impacto">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-badge-wrap">
+        <span class="section-tag green">Impacto del Proyecto</span>
+      </div>
+      <h2 class="section-title">Del control manual a la agricultura inteligente</h2>
+      <p class="section-subtitle">
+        Siete resultados concretos que transforman la forma en que se gestiona la germinación de las plantas.
+      </p>
+    </div>
+
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-icon-circle">🤖</div>
+        <h3>Automatización del monitoreo ambiental</h3>
+        <p>Monitoreo continuo 24/7 sin descanso, registrando variables climáticas en intervalos de milisegundos.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon-circle">💧</div>
+        <h3>Ahorro de agua con riego automatizado</h3>
+        <p>Dosificación precisa del agua según la conductividad del sustrato, evitando el desperdicio del recurso.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon-circle">📱</div>
+        <h3>Monitoreo remoto en tiempo real</h3>
+        <p>Acceso desde cualquier smartphone, tablet o computadora a través de un panel web responsivo y amigable.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon-circle">🌱</div>
+        <h3>Mayor porcentaje de germinación</h3>
+        <p>Maximizando el vigor y la uniformidad de las semillas al mantenerlas en su zona de confort biológico.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon-circle">🏗️</div>
+        <h3>Sistema escalable a varios invernaderos</h3>
+        <p>Topología MQTT modular que permite sumar nuevos nodos y sensores a una misma estación central sin fricción.</p>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-icon-circle">👨‍🌾</div>
+        <h3>Menos trabajo manual para el agricultor</h3>
+        <p>Liberación de horas de trabajo repetitivo para que el productor pueda enfocarse en labores estratégicas del vivero.</p>
+      </div>
+
+      <div class="impact-card featured-7th">
+        <div class="impact-icon-circle">🛡️</div>
+        <div>
+          <h3>Autonomía Edge: Resiliencia sin Internet</h3>
+          <p>Suelo seco → activa la bomba · Temp. &gt;30°C → activa el ventilador. La lógica corre directamente en el microcontrolador ESP32: el invernadero responde y protege el cultivo aun sin conexión a la red.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 4: NUESTRO ENFOQUE (Interior Panel Central) ================= -->
+<section class="enfoque-section" id="enfoque">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-badge-wrap">
+        <span class="section-tag green">Nuestro Enfoque</span>
+      </div>
+      <h2 class="section-title">Design Thinking + arquitectura en tres capas</h2>
+      <p class="section-subtitle">
+        Metodología: fases centradas en el agricultor para resolver el problema desde la empatía hasta la validación física.
+      </p>
+    </div>
+
+    <!-- 5 Design Thinking Steps -->
+    <div class="dt-steps-grid">
+      <div class="dt-step-card">
+        <div class="dt-step-number">1</div>
+        <h4>Empatizar</h4>
+        <p>Entrevistas, encuestas y observación directa en invernaderos y viveros de Tingo María.</p>
+      </div>
+
+      <div class="dt-step-card">
+        <div class="dt-step-number">2</div>
+        <h4>Definir</h4>
+        <p>Dificultad para controlar humedad, temperatura y riego de forma constante y nocturna.</p>
+      </div>
+
+      <div class="dt-step-card">
+        <div class="dt-step-number">3</div>
+        <h4>Idear</h4>
+        <p>Comparamos 3 alternativas; elegimos la de mayor impacto: monitoreo + alertas + riego automático.</p>
+      </div>
+
+      <div class="dt-step-card">
+        <div class="dt-step-number">4</div>
+        <h4>Prototipar</h4>
+        <p>Construcción física a escala (45 × 56 × 71 cm) y desarrollo de la plataforma web en tiempo real.</p>
+      </div>
+
+      <div class="dt-step-card">
+        <div class="dt-step-number">5</div>
+        <h4>Evaluar</h4>
+        <p>Pruebas funcionales en entorno controlado con 100% de éxito en comunicación y actuación.</p>
+      </div>
+    </div>
+
+    <!-- Arquitectura del Sistema en 3 Capas -->
+    <div class="arch-container" id="arquitectura">
+      <div class="text-center">
+        <div class="section-badge-wrap" style="justify-content:center;">
+          <span class="section-tag green">Arquitectura del Sistema</span>
+        </div>
+        <h3 style="font-size:1.6rem; margin-bottom:8px; font-weight:700; color:#fff;">Tres capas robustas e interconectadas</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem; margin-left:auto; margin-right:auto; max-width:560px;">Integración transparente de hardware embebido, servidor de telemetría e interfaz de usuario.</p>
+      </div>
+
+      <div class="arch-layers-list">
+        <div class="arch-layer-item">
+          <div class="arch-badge-block">
+            <span class="arch-badge-pill edge">EDGE</span>
+            <span class="arch-badge-sub">Hardware & Firmware</span>
+          </div>
+          <div class="arch-desc-text">
+            <strong>ESP32</strong> + sensores <strong>DHT22</strong> (temperatura y humedad relativa), <strong>humedad de suelo</strong> capacitivo, <strong>LDR</strong> (luminosidad) + relés optoacoplados (electrobomba sumergible y ventilador).
+          </div>
+        </div>
+
+        <div class="arch-layer-item">
+          <div class="arch-badge-block">
+            <span class="arch-badge-pill server">SERVIDOR</span>
+            <span class="arch-badge-sub">Backend & Broker</span>
+          </div>
+          <div class="arch-desc-text">
+            <strong>Node.js + Express + MQTT (Mosquitto) + PostgreSQL</strong> — procesa telemetría en tiempo real, almacena registros históricos y decide acciones con persistencia de datos.
+          </div>
+        </div>
+
+        <div class="arch-layer-item">
+          <div class="arch-badge-block">
+            <span class="arch-badge-pill ui">UI</span>
+            <span class="arch-badge-sub">Frontend Web</span>
+          </div>
+          <div class="arch-desc-text">
+            <strong>React + Vite + Socket.io</strong> — panel web en vivo, gráficos interactivos de tendencias y modo de control manual remoto de actuadores.
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-offline-note">
+        <span class="note-icon">💡</span>
+        <span><strong>Regla de control embebido:</strong> Suelo seco → activa la bomba · Temp. &gt;30°C → activa el ventilador. La lógica corre en el ESP32: el invernadero responde aun sin conexión a internet.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 5: RESULTADOS (Interior Panel Derecho) ================= -->
+<section class="results-section" id="resultados">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-badge-wrap">
+        <span class="section-tag green">Resultados</span>
+      </div>
+      <h2 class="section-title">Un prototipo funcional, validado</h2>
+      <p class="section-subtitle">Hardware, software y comunicación validados de extremo a extremo en un prototipo a escala reducida.</p>
+    </div>
+
+    <div class="results-grid">
+      <!-- Checklist of Tests -->
+      <div class="tests-checklist-card">
+        <div class="checklist-title-wrap">
+          <img src="assets/clipboard_icon.png" alt="Validación" style="height:28px; width:auto;">
+          <h3>Pruebas realizadas con éxito</h3>
+        </div>
+
+        <ul class="tests-checklist-list">
+          <li class="test-check-item">
+            <span class="test-check-icon">✓</span>
+            <p><strong>Conexión WiFi</strong> del ESP32 establecida y reconectada correctamente.</p>
+          </li>
+          <li class="test-check-item">
+            <span class="test-check-icon">✓</span>
+            <p><strong>Datos recibidos por MQTT</strong> sin pérdidas apreciables en las pruebas.</p>
+          </li>
+          <li class="test-check-item">
+            <span class="test-check-icon">✓</span>
+            <p><strong>Bomba y ventilador</strong> respondieron con precisión a los umbrales definidos.</p>
+          </li>
+          <li class="test-check-item">
+            <span class="test-check-icon">✓</span>
+            <p><strong>Plataforma web</strong> mostró todas las variables en tiempo real con mínima latencia.</p>
+          </li>
+          <li class="test-check-item">
+            <span class="test-check-icon">✓</span>
+            <p><strong>Modo manual</strong> controló los actuadores de forma remota desde la web.</p>
+          </li>
+          <li class="test-check-item">
+            <span class="test-check-icon">✓</span>
+            <p><strong>Sistema estable</strong> durante todo el periodo experimental de pruebas.</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Prototipo Físico & 100% Banner -->
+      <div class="prototype-info-card">
+        <div class="prototype-box">
+          <div class="proto-title-wrap">
+            <div class="science-heading-square"></div>
+            <h3>El prototipo físico</h3>
+          </div>
+          <p>
+            Construido a escala reducida <strong>(45 × 56 × 71 cm)</strong> siguiendo cinco pasos sistemáticos para garantizar la replicabilidad del proyecto:
+          </p>
+          <div class="proto-steps-pills">
+            <span class="proto-pill">1. Preparación terreno</span>
+            <span class="proto-pill">2. Instalación riego</span>
+            <span class="proto-pill">3. Integración IoT</span>
+            <span class="proto-pill">4. Firmware ESP32</span>
+            <span class="proto-pill">5. Calibración final</span>
+          </div>
+        </div>
+
+        <!-- 100% Validation Banner -->
+        <div class="validation-100-banner">
+          <div class="validation-100-number">100%</div>
+          <div class="validation-100-text">
+            <h4>Pruebas funcionales exitosas</h4>
+            <p>Hardware, software y comunicación validados de extremo a extremo en entorno controlado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 7: EQUIPO Y CRÉDITOS ================= -->
+<section class="team-section" id="equipo">
+  <div class="container">
+    <div class="text-center">
+      <div class="section-badge-wrap">
+        <span class="section-tag green">Equipo de Desarrollo</span>
+      </div>
+      <h2 class="section-title">Construido por estudiantes UNAS</h2>
+      <p class="section-subtitle">
+        Universidad Nacional Agraria de la Selva · Facultad de Ingeniería en Informática y Sistemas
+      </p>
+    </div>
+
+    <!-- 6 Team Members -->
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">CD</div>
+        <h4>Dávila Isidro, Cristopher</h4>
+        <span class="role-tag">Estudiante Desarrollador</span>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">GD</div>
+        <h4>Díaz Guzmán, Geraldine</h4>
+        <span class="role-tag">Estudiante Desarrollador</span>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">HE</div>
+        <h4>Encarnación Poves, Haniel</h4>
+        <span class="role-tag">Estudiante Desarrollador</span>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">DE</div>
+        <h4>Enrique Debarbiere, Darikson</h4>
+        <span class="role-tag">Estudiante Desarrollador</span>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">ZF</div>
+        <h4>Flores Juanan, Zahir</h4>
+        <span class="role-tag">Estudiante Desarrollador</span>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">JG</div>
+        <h4>Guevara Cuchilla, Juan</h4>
+        <span class="role-tag">Estudiante Desarrollador</span>
+      </div>
+    </div>
+
+    <!-- Docente & Curso Callout -->
+    <div class="docente-course-card">
+      <div class="docente-info">
+        <div class="docente-avatar">👨‍🏫</div>
+        <div class="docente-text">
+          <h4>Docente: Olivera Ruiz, Gardyn</h4>
+          <p>Curso: Internet de las cosas · Semestre 2026</p>
+        </div>
+      </div>
+
+      <div class="location-tag">
+        <span>📍</span>
+        <span>Tingo María – Perú, 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="footer-top-grid">
+      <div class="footer-brand">
+        <div class="nav-brand">
+          <div class="nav-brand-logos">
+            <img src="assets/logo_unas.png" alt="UNAS" style="height:32px;">
+            <img src="assets/logo_fiis.png" alt="FIIS" style="height:32px;">
+          </div>
+          <span style="font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:#fff;">Invernadero <span style="color:var(--green-bright)">IoT</span></span>
+        </div>
+        <p>
+          Monitoreo y control automatizado de la germinación de semillas mediante tecnología IoT. Del control manual a la agricultura inteligente.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#proposito">¿Para qué sirve?</a></li>
+          <li><a href="#desafio">El Desafío</a></li>
+          <li><a href="#impacto">Impacto del Proyecto</a></li>
+          <li><a href="#enfoque">Metodología & Arquitectura</a></li>
+          <li><a href="#resultados">Resultados Validados</a></li>
+          <li><a href="#equipo">Equipo de Desarrollo</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Institución</h4>
+        <ul>
+          <li><span>Universidad Nacional Agraria de la Selva</span></li>
+          <li><span>Facultad de Ingeniería en Informática y Sistemas</span></li>
+          <li><span>Curso: Internet de las Cosas</span></li>
+          <li><span>Docente: Gardyn Olivera Ruiz</span></li>
+          <li><span>Tingo María, Huánuco, Perú</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Invernadero Inteligente IoT · UNAS · Todos los derechos reservados.</span>
+      <span>Agricultura 4.0 aplicada a la selva peruana 🌱</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="script.js"></script>
+</body>
+</html>
